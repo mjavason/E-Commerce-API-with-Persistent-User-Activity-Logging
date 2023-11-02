@@ -1,24 +1,18 @@
 import {
   Controller,
   Get,
-  Post,
-  Body,
-  Patch,
+
   Param,
-  Delete,
-  HttpCode,
   HttpStatus,
   InternalServerErrorException,
   NotFoundException,
   Query,
-  UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import {
   ApiTags,
   ApiOperation,
   ApiResponse,
-  ApiBody,
   ApiQuery,
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -31,17 +25,13 @@ import { IProduct } from './product.interface';
 import { IResponseData } from 'src/interfaces/response.interface';
 import { ResponseDto } from 'src/dto/response.dto';
 import {
-  CreateProductDto,
   FindProductDto,
-  ProductIdDto,
-  UpdateProductDto,
+
   GetAllProductsDto,
 } from './product.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('product')
 @ApiTags('Product')
-@ApiBearerAuth('jwt')
 @ApiResponse({
   status: HttpStatus.OK,
   type: ResponseDto,
@@ -49,8 +39,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 })
 @ApiInternalServerErrorResponse({ description: MESSAGES.INTERNAL_ERROR })
 @ApiBadRequestResponse({ description: MESSAGES.BAD_PARAMETERS })
-@ApiUnauthorizedResponse({ description: 'Unauthorized' })
-export class ProductController {
+export class ProductPublicController {
   constructor(private readonly service: ProductService) {}
 
   // Get a list of all products with optional pagination

@@ -24,12 +24,12 @@ import { UserService } from 'src/user/user.service';
 import { hashPassword } from 'src/helpers/password.helper';
 import { SuccessResponse } from 'src/helpers/response.helper';
 import { CreateUserDto } from 'src/user/user.dto';
-import { ResponseData } from 'src/interfaces/response.interface';
+import { IResponseData } from 'src/interfaces/response.interface';
 import { IUser } from 'src/user/user.interface';
 import { LoginUserDto } from './auth.dto';
 import { JWT_SECRET, MESSAGES } from 'src/constants';
 import { signJwt } from 'src/utils/jwt';
-import { MailTemplateService } from 'src/mail/mail_templates.service';
+// import { MailTemplateService } from 'src/mail/mail_templates.service';
 import { ResponseDto } from 'src/dto/response.dto';
 
 @Controller('auth')
@@ -45,8 +45,8 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private mailTemplateService: MailTemplateService,
-  ) {}
+  ) // private mailTemplateService: MailTemplateService,
+  {}
 
   @UseGuards(LocalAuthGuard)
   @Post('/login')
@@ -61,7 +61,7 @@ export class AuthController {
   @ApiOperation({ summary: 'User registration' })
   @ApiBody({ type: CreateUserDto })
   @ApiConflictResponse({ description: 'User already exists' })
-  async register(@Body() body: CreateUserDto): Promise<ResponseData<IUser>> {
+  async register(@Body() body: CreateUserDto): Promise<IResponseData<IUser>> {
     const existing_user = await this.userService.findOne({
       email: body.email,
     });
@@ -83,19 +83,19 @@ export class AuthController {
     // Send mail confirmation email
     const token = await signJwt({ _id: data._id }, JWT_SECRET, '1h');
 
-    const sendMail = await this.mailTemplateService.sendWelcomeMail(
-      body.email,
-      body.first_name,
-      body.last_name,
-      token,
-    );
+    // const sendMail = await this.mailTemplateService.sendWelcomeMail(
+    //   body.email,
+    //   body.first_name,
+    //   body.last_name,
+    //   token,
+    // );
 
-    if (!sendMail) {
-      return SuccessResponse(
-        data,
-        'User registered successfully. Welcome mail failed',
-      );
-    }
+    // if (!sendMail) {
+    //   return SuccessResponse(
+    //     data,
+    //     'User registered successfully. Welcome mail failed',
+    //   );
+    // }
 
     return SuccessResponse({
       first_name: data.first_name,
