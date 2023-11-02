@@ -42,7 +42,7 @@ import {
   UpdateUserDto,
   GetAllUsersDto,
 } from './user.dto';
-import { ResponseDto } from 'src/dto';
+import { ResponseDto } from 'src/dto/response.dto';
 
 @Controller('user')
 @ApiTags('User')

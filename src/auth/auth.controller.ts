@@ -30,7 +30,7 @@ import { LoginUserDto } from './auth.dto';
 import { JWT_SECRET, MESSAGES } from 'src/constants';
 import { signJwt } from 'src/utils/jwt';
 import { MailTemplateService } from 'src/mail/mail_templates.service';
-import { ResponseDto } from 'src/dto';
+import { ResponseDto } from 'src/dto/response.dto';
 
 @Controller('auth')
 @ApiTags('Auth')
