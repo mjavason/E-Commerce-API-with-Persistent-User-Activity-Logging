@@ -7,7 +7,7 @@ The E-Commerce API with Persistent User Activity Logging is a powerful system fo
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+  - [Installation and Environment Setup](#installation-and-environment-setup)
 - [API Endpoints](#api-endpoints)
 - [Usage](#usage)
 - [Documentation](#documentation)
@@ -21,7 +21,15 @@ The E-Commerce API with Persistent User Activity Logging is a powerful system fo
 
 ## Getting Started
 
-### Installation
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js installed.
+- MongoDB setup with appropriate credentials.
+- Git (optional but recommended).
+
+### Installation and Environment Setup
 
 1. Clone the repository:
    ```sh
@@ -34,7 +42,16 @@ The E-Commerce API with Persistent User Activity Logging is a powerful system fo
    npm install
    ```
 
-3. Configure your environment variables.
+3. Create a `.env` file in the project's root directory and set the following environment variables:
+
+   ```env
+   PORT=3000
+   JWT_SECRET=your_secret_key
+   MONGO_DB_NAME=your_database_name
+   MONGO_DB_URL=your_mongodb_url
+   ```
+
+   Ensure these values are set according to your specific requirements.
 
 4. Start the server:
    ```sh
@@ -46,7 +63,6 @@ The E-Commerce API with Persistent User Activity Logging is a powerful system fo
 The API provides a range of endpoints for managing products and user activities. You can explore these endpoints using the Swagger documentation at `/docs`.
 
 - View product details, add products, and more.
-
 
 ## Documentation
 
