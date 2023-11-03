@@ -1,7 +1,6 @@
 import {
   Controller,
   Get,
-
   Param,
   HttpStatus,
   InternalServerErrorException,
@@ -15,9 +14,7 @@ import {
   ApiResponse,
   ApiQuery,
   ApiBadRequestResponse,
-  ApiBearerAuth,
   ApiInternalServerErrorResponse,
-  ApiUnauthorizedResponse,
 } from '@nestjs/swagger'; // Import Swagger decorators
 import { MESSAGES } from 'src/constants';
 import { SuccessResponse } from 'src/helpers/response.helper';
